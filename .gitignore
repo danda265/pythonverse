@@ -1,0 +1,6 @@
+node_modules/
+.env
+*.env
+check.js
+check2.js
+check3.js
