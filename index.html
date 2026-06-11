@@ -3240,14 +3240,14 @@ conquistas = {
 // MODULE DEFINITIONS
 // ═══════════════════════════════════════════════
 const MODULES = [
-  { name: 'Fundamentos',        start: 0,  end: 3  },
-  { name: 'Lógica e Controle',  start: 4,  end: 6  },
-  { name: 'Estruturas',         start: 7,  end: 9  },
-  { name: 'Funções',            start: 10, end: 14 },
-  { name: 'POO e Avançado',     start: 15, end: 17 },
-  { name: 'Ferramentas',        start: 18, end: 23 },
-  { name: 'Web e APIs',         start: 24, end: 27 },
-  { name: 'Projeto Final',      start: 28, end: 28 },
+  { name: 'Fundamentos',          start: 0,  end: 3  },
+  { name: 'Controle de Fluxo',    start: 4,  end: 6  },
+  { name: 'Estruturas e Funções', start: 7,  end: 9  },
+  { name: 'POO e Módulos',        start: 10, end: 13 },
+  { name: 'Web e Deploy',         start: 14, end: 17 },
+  { name: 'Python Intermediário', start: 18, end: 23 },
+  { name: 'Projetos',             start: 24, end: 27 },
+  { name: 'Web Profissional',     start: 28, end: 29 },
 ];
 
 function moduleOfLesson(idx) {
@@ -3311,7 +3311,7 @@ const moduleExams = [
     ]
   },
   // Módulo 4 — Funções
-  { title: 'Prova — Módulo 4: Funções',
+  { title: 'Prova — Módulo 4: POO e Módulos',
     questions: [
       { q: 'O que é obrigatório para definir uma função em Python?',
         opts: ['return e parâmetros', 'A palavra-chave def e um nome', 'Docstring', 'Pelo menos um parâmetro'], ans: 1 },
@@ -3326,7 +3326,7 @@ const moduleExams = [
     ]
   },
   // Módulo 5 — POO
-  { title: 'Prova — Módulo 5: POO e Avançado',
+  { title: 'Prova — Módulo 5: Web e Deploy',
     questions: [
       { q: 'O que é self em um método de classe?',
         opts: ['Um parâmetro opcional', 'Referência à instância atual do objeto', 'Um tipo especial de variável global', 'O nome da classe'], ans: 1 },
@@ -3341,7 +3341,7 @@ const moduleExams = [
     ]
   },
   // Módulo 6 — Ferramentas
-  { title: 'Prova — Módulo 6: Ferramentas Profissionais',
+  { title: 'Prova — Módulo 6: Python Intermediário',
     questions: [
       { q: 'Como abrir um arquivo para adicionar conteúdo ao final (sem apagar o que já existe)?',
         opts: ['open("f.txt","w")', 'open("f.txt","r")', 'open("f.txt","a")', 'open("f.txt","x")'], ans: 2 },
@@ -3356,7 +3356,7 @@ const moduleExams = [
     ]
   },
   // Módulo 7 — Web
-  { title: 'Prova — Módulo 7: Web e APIs',
+  { title: 'Prova — Módulo 7: Projetos',
     questions: [
       { q: 'O que faz requests.get("https://api.exemplo.com/dados")?',
         opts: ['Envia dados para a API (POST)', 'Faz uma requisição HTTP GET e retorna a resposta', 'Abre o navegador na URL', 'Baixa um arquivo para o disco'], ans: 1 },
@@ -3421,26 +3421,27 @@ const lessonReqs = [
   {must:['while'],              min:30},  // 6  While
   {must:['['],                  min:40},  // 7  Listas
   {must:['{',':'],              min:40},  // 8  Dicionários
-  {must:[],                     min:30},  // 9  Tuplas/Sets
-  {must:['def'],                min:40},  // 10 Funções
-  {must:['import'],             min:20},  // 11 Módulos
-  {must:['try'],                min:30},  // 12 try/except
-  {must:['for','in','['],       min:30},  // 13 Comprehensions
-  {must:['lambda'],             min:30},  // 14 Lambda
-  {must:['class'],              min:40},  // 15 Classes
-  {must:['def'],                min:30},  // 16 Decorators
-  {must:['yield'],              min:30},  // 17 Generators
-  {must:['open'],               min:30},  // 18 Arquivos
-  {must:[],min:10,terminal:true},         // 19 venv
-  {must:[],min:10,terminal:true},         // 20 Git
-  {must:['sqlite3'],            min:40},  // 21 SQLite
-  {must:['def test'],           min:40},  // 22 pytest
-  {must:['def '],               min:40},  // 23 CLI
-  {must:['requests'],           min:30},  // 24 APIs
-  {must:['app','route'],        min:40},  // 25 Flask
-  {must:['app'],                min:30},  // 26 FastAPI
-  {must:[],min:10,terminal:true},         // 27 Deploy
-  {must:['def ','import'],      min:50},  // 28 Projeto Final
+  {must:['def'],                min:40},  // 9  Funções
+  {must:['import'],             min:20},  // 10 Módulos
+  {must:['try'],                min:30},  // 11 try/except
+  {must:['class'],              min:40},  // 12 Classes
+  {must:['open'],               min:30},  // 13 Arquivos
+  {must:['requests'],           min:30},  // 14 APIs
+  {must:['app','route'],        min:40},  // 15 Flask
+  {must:[],min:10,terminal:true},         // 16 Deploy
+  {must:['def ','import'],      min:50},  // 17 Projeto Final #1
+  {must:['for','in','['],       min:30},  // 18 Comprehensions
+  {must:['lambda'],             min:30},  // 19 Lambda
+  {must:['{'],                  min:30},  // 20 Tuplas/Sets
+  {must:['def'],                min:30},  // 21 Decorators
+  {must:['yield'],              min:30},  // 22 Generators
+  {must:[],min:10,terminal:true},         // 23 venv
+  {must:[],min:10,terminal:true},         // 24 Git
+  {must:['sqlite3'],            min:40},  // 25 SQLite
+  {must:['def test'],           min:40},  // 26 pytest
+  {must:['def '],               min:40},  // 27 CLI tarefas
+  {must:['app'],                min:30},  // 28 FastAPI
+  {must:['def ','import'],      min:50},  // 29 Projeto Final #2
 ];
 
 function loadCompleted() {
@@ -3492,9 +3493,9 @@ function updateChallengeStatus() {
 // BUILD SIDEBAR DYNAMICALLY
 // ═══════════════════════════════════════════════
 const MODULE_NAMES = [
-  'Fundamentos','Lógica e Controle','Estruturas',
-  'Funções','POO e Avançado','Ferramentas',
-  'Web e APIs','Projeto Final'
+  'Fundamentos','Controle de Fluxo','Estruturas e Funções',
+  'POO e Módulos','Web e Deploy','Python Intermediário',
+  'Projetos','Web Profissional'
 ];
 
 function buildSidebar() {
