@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PythonVerse — Aprenda Python do Zero</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
 <style>
 :root {
   --bg: #050810;
@@ -3763,8 +3764,23 @@ function closeExam() {
 
 // ═══════════════════════════════════════════════
 // PYTHON INTERPRETER (simulated)
+// ── Pyodide: executor Python real no browser ────────────
+let _py = null;
+const _pyReady = (async () => {
+  if (typeof loadPyodide === 'undefined') return false;
+  try {
+    _py = await loadPyodide({
+      stdin: () => (window.prompt('🐍 input():') ?? '') + '\n'
+    });
+    return true;
+  } catch(e) {
+    console.warn('[PythonVerse] Pyodide indisponível, usando simulador:', e.message);
+    return false;
+  }
+})();
+
 // ═══════════════════════════════════════════════
-function runCode() {
+async function runCode() {
   const code = document.getElementById('code-editor').value.trim();
   const ind = document.getElementById('out-indicator');
   const out = document.getElementById('output-text');
@@ -3779,38 +3795,58 @@ function runCode() {
   out.textContent = 'executando...';
   out.className = 'loading-text';
 
-  setTimeout(() => {
+  const ok = await _pyReady;
+
+  if (ok && _py) {
+    // Executor real: Pyodide (WebAssembly Python)
+    const lines = [];
+    _py.setStdout({ batched: s => lines.push(s) });
+    _py.setStderr({ batched: s => lines.push('⚠️ ' + s) });
+    try {
+      await _py.runPythonAsync(code);
+      const result = lines.join('\n');
+      ind.className = 'output-indicator success';
+      out.textContent = result || '(sem saída — sem erros)';
+      out.className = '';
+      _afterRun(code, result, out);
+    } catch(e) {
+      ind.className = 'output-indicator error';
+      out.textContent = '❌ ' + (e.message || String(e)) + '\n\nRevise o código e tente novamente.';
+      out.className = 'error-text';
+    }
+  } else {
+    // Fallback: simulador JS limitado
     try {
       const result = simulatePython(code);
       ind.className = 'output-indicator success';
       out.textContent = result || '(sem saída — sem erros)';
       out.className = '';
-
-      // Validar desafio
-      const check = checkChallenge(code);
-      if (check.ok && !isLessonDone(currentLesson)) {
-        markDone(currentLesson);
-        gainXP(20);
-        showConfetti();
-        updateChallengeStatus();
-        updateNextBtn();
-        buildSidebar();
-        // Banner de conclusão no output
-        setTimeout(() => {
-          out.textContent = (result || '(sem saída)') + '\n\n✅ Desafio concluído! +20 XP';
-        }, 100);
-      } else if (!check.ok && check.missing.length) {
-        // Mostrar o que falta
-        out.textContent = (result || '(sem saída)') +
-          '\n\n⚠️ Para concluir o desafio, seu código precisa usar:\n' +
-          check.missing.map(k => '  • ' + k).join('\n');
-      }
+      _afterRun(code, result, out);
     } catch(e) {
       ind.className = 'output-indicator error';
       out.textContent = '❌ Erro: ' + e.message + '\n\nRevise o código e tente novamente.';
       out.className = 'error-text';
     }
-  }, 600);
+  }
+}
+
+function _afterRun(code, result, out) {
+  const check = checkChallenge(code);
+  if (check.ok && !isLessonDone(currentLesson)) {
+    markDone(currentLesson);
+    gainXP(20);
+    showConfetti();
+    updateChallengeStatus();
+    updateNextBtn();
+    buildSidebar();
+    setTimeout(() => {
+      out.textContent = (result || '(sem saída)') + '\n\n✅ Desafio concluído! +20 XP';
+    }, 100);
+  } else if (!check.ok && check.missing.length) {
+    out.textContent = (result || '(sem saída)') +
+      '\n\n⚠️ Para concluir o desafio, seu código precisa usar:\n' +
+      check.missing.map(k => '  • ' + k).join('\n');
+  }
 }
 
 function simulatePython(code) {
