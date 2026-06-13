@@ -3311,64 +3311,64 @@ const moduleExams = [
         opts: ['Tupla usa [], lista usa ()', 'Lista é mutável, tupla é imutável', 'São estruturas idênticas', 'Tupla é mais rápida para buscas'], ans: 1 },
     ]
   },
-  // Módulo 4 — Funções
+  // Módulo 4 — POO e Módulos
   { title: 'Prova — Módulo 4: POO e Módulos',
     questions: [
-      { q: 'O que é obrigatório para definir uma função em Python?',
-        opts: ['return e parâmetros', 'A palavra-chave def e um nome', 'Docstring', 'Pelo menos um parâmetro'], ans: 1 },
-      { q: 'O que imprime?\n\ndef dobro(x):\n    return x * 2\nprint(dobro(5))',
-        opts: ['5', '10', '25', 'Erro'], ans: 1 },
-      { q: 'O que retorna math.sqrt(16) após import math?',
-        opts: ['256', '4.0', '8', 'Erro'], ans: 1 },
-      { q: 'Qual é o resultado de [x**2 for x in range(4)]?',
-        opts: ['[0,1,4,9]', '[1,4,9,16]', '[0,1,2,3]', '[2,4,6,8]'], ans: 0 },
+      { q: 'Qual o resultado de: import math; print(math.floor(3.9))',
+        opts: ['3', '4', '3.9', 'Erro'], ans: 0 },
       { q: 'O que faz o bloco try/except?',
-        opts: ['Repete código até funcionar', 'Captura e trata erros sem travar o programa', 'Testa performance do código', 'Define múltiplas funções'], ans: 1 },
+        opts: ['Repete o código até funcionar', 'Captura e trata erros sem travar o programa', 'Testa a performance do código', 'Define múltiplas funções'], ans: 1 },
+      { q: 'O que é self em um método de classe Python?',
+        opts: ['Uma variável global', 'Referência à instância atual do objeto', 'O nome da classe', 'Um parâmetro opcional'], ans: 1 },
+      { q: 'Para que serve o método __init__ em uma classe?',
+        opts: ['Deletar a instância ao final', 'Criar atributos compartilhados por todas as instâncias', 'Construtor — inicializa os atributos ao criar a instância', 'Importar módulos automaticamente'], ans: 2 },
+      { q: 'Qual modo de abertura de arquivo adiciona conteúdo sem apagar o existente?',
+        opts: ['"w" (write)', '"r" (read)', '"x" (exclusive)', '"a" (append)'], ans: 3 },
     ]
   },
-  // Módulo 5 — POO
+  // Módulo 5 — Web e Deploy
   { title: 'Prova — Módulo 5: Web e Deploy',
     questions: [
-      { q: 'O que é self em um método de classe?',
-        opts: ['Um parâmetro opcional', 'Referência à instância atual do objeto', 'Um tipo especial de variável global', 'O nome da classe'], ans: 1 },
-      { q: 'Para que serve o método __init__?',
-        opts: ['É uma função qualquer', 'Destrói a instância da classe', 'Construtor — é chamado ao criar uma instância', 'Define métodos privados'], ans: 2 },
-      { q: 'O que faz um decorator (@nome_decorator)?',
-        opts: ['Colore a sintaxe do código', 'Adiciona comportamento a uma função sem modificá-la', 'Cria uma nova classe automaticamente', 'Importa módulos externos'], ans: 1 },
-      { q: 'Qual palavra-chave diferencia um generator de uma função normal?',
-        opts: ['send', 'emit', 'yield', 'next'], ans: 2 },
-      { q: 'Qual a principal vantagem de um generator?',
-        opts: ['Sintaxe mais bonita', 'Processa dados um por vez, usando muito menos memória', 'É sempre mais rápido que listas', 'Não precisa de loop para funcionar'], ans: 1 },
+      { q: 'O que faz requests.get("https://api.exemplo.com/dados")?',
+        opts: ['Envia dados via POST', 'Faz requisição HTTP GET e retorna a resposta', 'Baixa um arquivo para o disco', 'Abre o navegador na URL'], ans: 1 },
+      { q: 'Como acessar o JSON da resposta de uma requisição com requests?',
+        opts: ['resp.text()', 'resp.body', 'resp.json()', 'json.parse(resp)'], ans: 2 },
+      { q: 'Em Flask, qual decorator define uma rota?',
+        opts: ['@flask.get("/")', '@route("/")', '@app.path("/")', '@app.route("/")'], ans: 3 },
+      { q: 'O que uma função de rota Flask deve retornar para o navegador?',
+        opts: ['Nada — rotas não retornam valores', 'Apenas objetos JSON', 'HTML, texto ou JSON — o que for retornado pela função', 'Um código de status HTTP numérico'], ans: 2 },
+      { q: 'Qual plataforma foi usada no curso para deploy gratuito?',
+        opts: ['AWS', 'Heroku (agora pago)', 'Render.com', 'Google Cloud Run'], ans: 2 },
     ]
   },
-  // Módulo 6 — Ferramentas
+  // Módulo 6 — Python Intermediário
   { title: 'Prova — Módulo 6: Python Intermediário',
     questions: [
-      { q: 'Como abrir um arquivo para adicionar conteúdo ao final (sem apagar o que já existe)?',
-        opts: ['open("f.txt","w")', 'open("f.txt","r")', 'open("f.txt","a")', 'open("f.txt","x")'], ans: 2 },
-      { q: 'Para que serve um virtual environment (venv)?',
-        opts: ['Emular outro sistema operacional', 'Isolar dependências por projeto, evitando conflitos', 'Virtualizar hardware', 'Rodar Python mais rápido'], ans: 1 },
-      { q: 'Qual comando salva as dependências instaladas em um arquivo?',
-        opts: ['pip save', 'pip freeze > requirements.txt', 'pip export', 'pip list --save'], ans: 1 },
-      { q: 'O que é assert em um teste pytest?',
-        opts: ['Imprime o resultado na tela', 'Verifica se uma condição é verdadeira — falha o teste se for falsa', 'Pula o teste automaticamente', 'Define o nome do teste'], ans: 1 },
-      { q: 'Qual comando cria um commit no git?',
-        opts: ['git save -m "msg"', 'git push -m "msg"', 'git commit -m "msg"', 'git add -m "msg"'], ans: 2 },
+      { q: 'Qual o resultado de [x**2 for x in range(4)]?',
+        opts: ['[1,4,9,16]', '[0,1,4,9]', '[0,2,4,6]', 'Erro'], ans: 1 },
+      { q: 'Qual o resultado de (lambda x, y: x + y)(3, 4)?',
+        opts: ['34', 'Erro — lambda não aceita dois parâmetros', 'None', '7'], ans: 3 },
+      { q: 'Qual o resultado de len({1,2,2,3,3,3})?',
+        opts: ['6', '2', '3', 'Erro'], ans: 2 },
+      { q: 'O que faz um decorator (@meu_decorator) aplicado a uma função?',
+        opts: ['Renomeia a função', 'Importa um módulo automaticamente', 'Adiciona comportamento sem modificar o código original', 'Cria uma cópia da função'], ans: 2 },
+      { q: 'Qual palavra-chave transforma uma função comum em generator?',
+        opts: ['return', 'emit', 'yield', 'send'], ans: 2 },
     ]
   },
-  // Módulo 7 — Web
+  // Módulo 7 — Projetos
   { title: 'Prova — Módulo 7: Projetos',
     questions: [
-      { q: 'O que faz requests.get("https://api.exemplo.com/dados")?',
-        opts: ['Envia dados para a API (POST)', 'Faz uma requisição HTTP GET e retorna a resposta', 'Abre o navegador na URL', 'Baixa um arquivo para o disco'], ans: 1 },
-      { q: 'Em Flask, qual decorator define uma rota?',
-        opts: ['@flask.route("/")', '@app.get("/")', '@app.route("/")', '@route.app("/")'], ans: 2 },
-      { q: 'Qual a principal vantagem do FastAPI sobre Flask?',
-        opts: ['É mais antigo e estável', 'Validação automática com type hints e documentação em /docs', 'Tem mais rotas disponíveis', 'É mais simples de instalar'], ans: 1 },
-      { q: 'Para que serve o arquivo requirements.txt?',
-        opts: ['Documentação do projeto', 'Lista as dependências Python necessárias para rodar o projeto', 'Configuração do servidor web', 'Log de erros da aplicação'], ans: 1 },
-      { q: 'Qual plataforma foi usada no curso para deploy gratuito?',
-        opts: ['AWS', 'Heroku (pago)', 'Render.com', 'Google Cloud'], ans: 2 },
+      { q: 'Qual a sequência correta para salvar mudanças no Git?',
+        opts: ['git push → git add → git commit', 'git commit → git add → git push', 'git add → git commit → git push', 'git save → git send'], ans: 2 },
+      { q: 'O que faz git branch nova-feature?',
+        opts: ['Muda para a branch nova-feature', 'Cria uma nova branch chamada nova-feature', 'Faz merge de nova-feature na branch atual', 'Deleta a branch nova-feature'], ans: 1 },
+      { q: 'Como criar uma conexão com banco SQLite em Python?',
+        opts: ['sqlite3.open("banco.db")', 'sqlite3.new("banco.db")', 'sqlite3.connect("banco.db")', 'import sql; sql.open()'], ans: 2 },
+      { q: 'Como o pytest identifica funções de teste automaticamente?',
+        opts: ['Pelo decorador @test', 'Pelo nome começar com test_', 'Pelo arquivo terminar em _check.py', 'Pelo import unittest no início'], ans: 1 },
+      { q: 'O que é o módulo argparse em Python?',
+        opts: ['Uma biblioteca para parsear JSON', 'Um framework web leve', 'Um módulo para criar interfaces de linha de comando com argumentos', 'Uma ferramenta de análise de performance'], ans: 2 },
     ]
   },
 ];
@@ -3768,12 +3768,16 @@ function closeExam() {
 let _py = null;
 const _pyReady = (async () => {
   if (typeof loadPyodide === 'undefined') return false;
+  const btn = document.querySelector('.btn-run');
+  if (btn) { btn.textContent = '⏳ Python...'; btn.disabled = true; }
   try {
     _py = await loadPyodide({
       stdin: () => (window.prompt('🐍 input():') ?? '') + '\n'
     });
+    if (btn) { btn.textContent = '▶ Executar'; btn.disabled = false; }
     return true;
   } catch(e) {
+    if (btn) { btn.textContent = '▶ Executar'; btn.disabled = false; }
     console.warn('[PythonVerse] Pyodide indisponível, usando simulador:', e.message);
     return false;
   }
